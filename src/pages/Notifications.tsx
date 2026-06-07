@@ -100,14 +100,16 @@ export function NotificationsPage() {
           {activeMut.error && <ErrorState message={extractError(activeMut.error)} />}
           {activeMut.isSuccess && (
             <p className="text-sm text-emerald-600">
-              {tab === 'broadcast' ? 'Broadcast queued.' : 'Notification sent.'}
+              {tab === 'broadcast'
+                ? `Broadcast sent to ${broadcastMut.data?.total_users ?? 0} users.`
+                : 'Notification sent.'}
             </p>
           )}
           <Button
             onClick={() => (tab === 'send' ? sendMut : broadcastMut).mutate()}
             disabled={activeMut.isPending || !title || !body || (tab === 'send' && !userId)}
           >
-            {activeMut.isPending ? 'Sending...' : tab === 'broadcast' ? 'Queue broadcast' : 'Send'}
+            {activeMut.isPending ? 'Sending...' : tab === 'broadcast' ? 'Send broadcast' : 'Send'}
           </Button>
         </div>
       </Card>
