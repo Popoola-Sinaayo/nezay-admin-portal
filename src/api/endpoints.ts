@@ -1,6 +1,7 @@
 import { api, unwrap } from './client'
 import type {
   AuthTokens,
+  BroadcastNotificationResult,
   CustomerUser,
   DashboardStats,
   OnboardingData,
@@ -52,7 +53,7 @@ export const adminApi = {
     body: string
     channels: string[]
     user_filter?: string
-  }) => unwrap(api.post('/admin/notifications/broadcast/', body)),
+  }) => unwrap<BroadcastNotificationResult>(api.post('/admin/notifications/broadcast/', body)),
 
   getTeam: () =>
     unwrap<{ members: TeamMember[]; pending_invites: PendingInvite[] }>(api.get('/admin/team/')),

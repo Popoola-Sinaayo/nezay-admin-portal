@@ -119,3 +119,10 @@ export interface PendingInvite {
   created_at: string
   is_used: boolean
 }
+
+export interface BroadcastNotificationResult {
+  total_users: number
+  email_sent: number
+  push_sent: number
+  errors: number
+}
